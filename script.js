@@ -3,33 +3,32 @@ getSumBtn.append("Get Total Price");
 document.body.appendChild(getSumBtn);
 
 const getSum = () => {
-//Add your code here
   const priceElements = document.querySelectorAll(".price");
 
-  // Calculate the total sum
   let total = 0;
   priceElements.forEach((elem) => {
-    total += parseFloat(elem.textContent); // Convert text to number
+    total += parseFloat(elem.textContent);
   });
 
   // Create a new row
   const table = document.querySelector("table");
   const totalRow = document.createElement("tr");
 
-  // Create a single cell with colspan=2 to span both columns
+  // Create a single cell with colspan=2
   const totalCell = document.createElement("td");
   totalCell.setAttribute("colspan", "2");
-  totalCell.textContent = `Total Price: Rs ${total}`;
 
-  // Append the cell to the row
+  // Create the #ans element and set total
+  const ansDiv = document.createElement("div");
+  ansDiv.id = "ans";
+  ansDiv.textContent = total;
+
+  // Add #ans div inside the total cell
+  totalCell.appendChild(ansDiv);
   totalRow.appendChild(totalCell);
-
-  // Append the row to the table
   table.appendChild(totalRow);
 
-  // Disable button after total is added to prevent duplication
-  getSumBtn.disabled = true;
+  getSumBtn.disabled = true; // Optional: to prevent duplicates
 };
 
 getSumBtn.addEventListener("click", getSum);
-
